@@ -1,0 +1,57 @@
+﻿@model IEnumerable<EFCoreInMemoryDemo.Web.Models.BoardGame>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Add">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublishingCompany)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinPlayers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxPlayers)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishingCompany)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinPlayers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxPlayers)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+                <form asp-action="Delete">
+                    <input type="hidden" value="@item.ID" name="id" />
+                    <input type="submit" value="Delete" />
+                </form>
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
